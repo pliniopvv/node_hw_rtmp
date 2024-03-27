@@ -1,4 +1,8 @@
 const NodeMediaServer = require('node-media-server');
+var express = require('express');
+
+var app = express();
+app.use('/', express.static(__dirname + "/public"));
 
 const config = {
   rtmp: {
@@ -16,3 +20,6 @@ const config = {
 
 var nms = new NodeMediaServer(config)
 nms.run();
+app.listen(80, () => {
+  console.log(`[Express] serving index on 80`);
+});
